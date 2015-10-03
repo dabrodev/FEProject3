@@ -1,4 +1,4 @@
-//	Enemy object
+// Enemy object
 var Enemy = function(x, y) {
 	// position of the enemy
 	this.x = x;
@@ -40,7 +40,7 @@ Enemy.prototype.render = function() {
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Player ob
+// Player object
 var Player = function(x, y) {
 	this.x = x; // x position for player
 	this.y = y; // y position for player
