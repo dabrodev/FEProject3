@@ -4,7 +4,7 @@ var Enemy = function(x, y) {
 	this.x = x;
 	this.y = y;
 	// random speed
-	this.speed = Math.floor(Math.random()*100) + 330;
+	this.speed = Math.floor(Math.random() * 100) + 330;
 	// enemy image
 	this.sprite = 'images/enemy-bug.png';
 };
@@ -18,10 +18,10 @@ Enemy.prototype.update = function(dt) {
 	this.x = this.x + this.speed * dt;
 	// condition, if enemy run out of game field area,
 	//it will set	the x-asis position to -100
-	if(this.x > 500) {
+	if (this.x > 500) {
 		this.x = -100;
 	}
-	// define the edges of the bug
+	/*// define the edges of the bug
 	var bugXLeftEdge = this.x - 50;
 	var bugXRightEdge = this.x + 50;
 	var bugYTopEdge = this.y - 50;
@@ -32,6 +32,18 @@ Enemy.prototype.update = function(dt) {
 	if (player.x > bugXLeftEdge && player.x < bugXRightEdge && player.y > bugYTopEdge && player.y < bugYBottomEdge) {
 		player.resetPlayer();
 		player.resetScore();
+	}*/
+
+	// new collisions algorithm
+	var rect1= {x: this.x, y: this.y, width: 50, height: 50};
+	var rect2= {x: player.x, y: player.y, width: 50, height: 50};
+
+	if (rect1.x < rect2.x + rect2.width &&
+	   rect1.x + rect1.width > rect2.x &&
+	   rect1.y < rect2.y + rect2.height &&
+	   rect1.height + rect1.y > rect2.y) {
+			 player.resetPlayer();
+			 player.resetScore();
 	}
 };
 
